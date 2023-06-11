@@ -8,7 +8,6 @@ import HeroArticle from "../../components/HeroArticle.astro"
 const {slug} = Astro.params
 const {data} = await supabase.from('article').select('*,category(category_name)').eq('article_slug',slug).limit(1).single()
 const markdown = await fetch(data?.markdown_url as string).then(res=>res.text())
-console.log(data)
 ---
 <!DOCTYPE html>
 <html lang="es">
