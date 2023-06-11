@@ -1,0 +1,13 @@
+---
+import type {IArticle} from "../types/articles"
+interface Props extends IArticle{
+
+}
+
+const {article_image,article_slug,article_title,created_at} = Astro.props
+---
+<a href=`/article/${article_slug}`>
+    <article>
+        <h2>{article_title}</h2>
+    </article>
+</a>

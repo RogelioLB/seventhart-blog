@@ -1,0 +1,17 @@
+---
+import {MdDateRange} from "react-icons/md/index"
+interface Props{
+    image?:string,
+    category?:string,
+    slug?:string,
+    created_at?:string | null
+}
+const {image,category,slug,created_at} = Astro.props
+---
+<div class="flex flex-col">
+    <img src={image} alt={slug} class="rounded-b-sm"/>
+    <div class="flex justify-between p-2">
+        <span>{category}</span>
+        <span class="flex gap-1 items-center"><MdDateRange />{new Date(created_at as string).toLocaleDateString()}</span>
+    </div>
+</div>

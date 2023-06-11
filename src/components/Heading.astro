@@ -1,0 +1,30 @@
+---
+const { as: Component } = Astro.props;
+---
+
+<Component><slot /></Component>
+
+<style>
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+    h1,h2,h3,{
+        text-wrap:balance;
+    }
+    h1{
+        @apply text-2xl !important;
+        @apply text-center;
+        @apply font-medium !important;
+        @apply text-blue-500;
+        text-wrap:balance;
+    }    
+    h2{
+        @apply text-xl !important;
+        @apply font-medium !important;
+        @apply text-blue-900;
+    }
+    h3{
+        @apply font-medium !important;
+        @apply text-lg !important;
+    }
+</style>

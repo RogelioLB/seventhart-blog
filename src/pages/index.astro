@@ -2,6 +2,11 @@
 import BaseHead from "../components/BaseHead.astro"
 import Hero from "../components/Hero.astro"
 import Content from "../layouts/Content.astro";
+import {supabase} from "../database"
+import MainArticle from "../components/MainArticle.astro";
+const {data} = await supabase.from("article").select("*,category(category_name)")
+const mainArticle = data?.shift()
+const articles = data
 ---
 <!DOCTYPE html>
 <html lang="es">
@@ -11,6 +16,7 @@ import Content from "../layouts/Content.astro";
 <body class="overflow-x-hidden">
     <Hero />
     <Content>
+        <MainArticle  {...mainArticle} />
     </Content>
 </body>
 </html>
