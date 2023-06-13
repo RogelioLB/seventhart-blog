@@ -1,16 +1,46 @@
 ---
+import type { User } from '@supabase/supabase-js';
+import { Avatar } from 'flowbite-react';
+import {BiHeart,BiComment} from "react-icons/bi/index"
+
 interface Props{
     image?:string,
     category?:string,
     slug?:string,
     created_at?:string | null,
-    title?:string
+    title?:string,
+    reading_time:number,
+    created_by: User | null
 }
-const {image,category,slug,title} = Astro.props
+const {image,category,created_at,slug,title,reading_time,created_by} = Astro.props
 ---
-<div class="flex flex-col w-screen h-screen relative before:absolute before:bg-gradient-to-b before:from-black/40 before:to-black before:top-0 before:left-0 before:right-0 before:bottom-0">
-    <img src={image} alt={slug} class="rounded-b-sm w-full h-full object-cover"/>
-    <div class="absolute z-10 top-0 right-0 left-0 bottom-0 flex items-center justify-center px-4">
-        <h1 class="text-white font-bold text-2xl lg:text-4xl font-poppins [text-wrap:balance] text-center">{title}</h1>
+<div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-4">
+        <h1 class="text-neutral-900 font-semibold font-poppins [text-wrap:balance] text-4xl md:text-5xl">{title}</h1>
+        <div class="flex">
+            <Avatar
+            img={created_by?.user_metadata.avatar_url}
+            rounded
+            >
+            <div class="space-y-1 font-regular dark:text-white">
+                <div class="font-light">
+                {created_by?.user_metadata.name}
+                </div>
+                <div class="text-gray-400 flex gap-2 text-sm">
+                    <span>{reading_time.toFixed(0)} minutos de lectura.</span>
+                    <span>{new Date(created_at as string).toLocaleDateString()}</span>
+                </div>
+            </div>
+            </Avatar>
+        </div>
     </div>
+    <div class="border-t border-zinc-400 border-b p-4 text-xl flex gap-2 mb-12">
+        <div>
+            <BiHeart />
+        </div>
+        <div>
+            <BiComment />
+        </div>
+    </div>
+    <img src={image} alt={slug} class="rounded-b-sm w-full h-full object-cover"/>
 </div>

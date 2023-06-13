@@ -5,9 +5,14 @@ import BaseHead from '../../components/BaseHead.astro'
 import Content from '../../layouts/Content.astro'
 import Heading from "../../components/Heading.astro"
 import HeroArticle from "../../components/HeroArticle.astro"
+import getReadingTime from "../../utils/getReadingTime"
+import { supabase_admin } from '../../database_admin'
+
 const {slug} = Astro.params
 const {data} = await supabase.from('article').select('*,category(category_name)').eq('article_slug',slug).limit(1).single()
 const markdown = data?.markdown_text
+const readingTime = getReadingTime(markdown as string).minutes
+const {user} = (await supabase_admin.auth.admin.getUserById(data?.user_id as string)).data
 ---
 <!DOCTYPE html>
 <html lang="es">
@@ -15,10 +20,10 @@ const markdown = data?.markdown_text
     <BaseHead title="SeventhArt" description="Blog" image={data?.article_image} keywords={data?.article_title ?? "Article"} />
 </head>
 <body class="overflow-x-hidden">
-    <HeroArticle image={data?.article_image} title={data?.article_title}/>
     <Content>
-        <div class="flex gap-4 flex-col">
-            <Markdown content={markdown} components={{Heading}}/>
+        <HeroArticle created_at={data?.created_at} image={data?.article_image} title={data?.article_title} reading_time={readingTime} created_by={user}/>
+        <div class="flex gap-4 flex-col mt-4 [&>p:nth-child(1)]:first-letter:mr-3  [&>p:nth-child(1)]:first-letter:float-left [&>p:nth-child(1)]:first-letter:text-5xl [&>p:nth-child(1)]:first-letter:font-bold">
+            <Markdown content={markdown} components={{Heading}} />
         </div>
     </Content>
 </body>

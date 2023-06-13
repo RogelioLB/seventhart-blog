@@ -4,7 +4,7 @@ import { supabase } from '../database';
 
 export default function UserDropdown() {
   const [user] = useUser()
-  console.log(user?.user_metadata)
+  
   return (
     <Dropdown
       inline
