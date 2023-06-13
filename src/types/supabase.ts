@@ -13,34 +13,43 @@ export interface Database {
         Row: {
           article_image: string
           article_slug: string
+          article_state: number | null
           article_title: string
           category_id: number
           created_at: string | null
           id: number
-          markdown_url: string
+          markdown_text: string
           user_id: string | null
         }
         Insert: {
           article_image: string
           article_slug: string
+          article_state?: number | null
           article_title: string
           category_id: number
           created_at?: string | null
           id?: number
-          markdown_url: string
+          markdown_text: string
           user_id?: string | null
         }
         Update: {
           article_image?: string
           article_slug?: string
+          article_state?: number | null
           article_title?: string
           category_id?: number
           created_at?: string | null
           id?: number
-          markdown_url?: string
+          markdown_text?: string
           user_id?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "article_article_state_fkey"
+            columns: ["article_state"]
+            referencedRelation: "state_publication"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "article_category_id_fkey"
             columns: ["category_id"]
@@ -177,6 +186,24 @@ export interface Database {
             referencedColumns: ["id"]
           }
         ]
+      }
+      state_publication: {
+        Row: {
+          created_at: string | null
+          id: number
+          state: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: number
+          state?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: number
+          state?: string | null
+        }
+        Relationships: []
       }
     }
     Views: {

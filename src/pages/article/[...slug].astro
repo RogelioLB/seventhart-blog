@@ -7,7 +7,7 @@ import Heading from "../../components/Heading.astro"
 import HeroArticle from "../../components/HeroArticle.astro"
 const {slug} = Astro.params
 const {data} = await supabase.from('article').select('*,category(category_name)').eq('article_slug',slug).limit(1).single()
-const markdown = await fetch(data?.markdown_url as string).then(res=>res.text())
+const markdown = data?.markdown_text
 ---
 <!DOCTYPE html>
 <html lang="es">
@@ -15,17 +15,10 @@ const markdown = await fetch(data?.markdown_url as string).then(res=>res.text())
     <BaseHead title="SeventhArt" description="Blog" image={data?.article_image}/>
 </head>
 <body class="overflow-x-hidden">
+    <HeroArticle image={data?.article_image} title={data?.article_title}/>
     <Content>
-        <div class="flex gap-8 flex-col md:flex-row relative">
-            <div class="flex-1 px-4">
-                <div class="flex flex-col gap-4 text-base font-poppins">
-                    <HeroArticle created_at={data?.created_at} image={data?.article_image} category={data?.category?.category_name} slug={data?.article_slug} />
-                    <Markdown content={markdown} components={{Heading}} />
-                </div>
-            </div>
-            <div class="basis-1/5">
-                <h4>Articulos Relacionados</h4>
-            </div>
+        <div class="flex gap-4 flex-col">
+            <Markdown content={markdown} components={{Heading}}/>
         </div>
     </Content>
 </body>

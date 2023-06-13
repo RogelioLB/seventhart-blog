@@ -1,0 +1,6 @@
+---
+import GoogleLogin from '../components/GoogleLogin'
+const searchParams = new URL(Astro.url).searchParams
+const redirectTo = searchParams.get("redirect")
+---
+<GoogleLogin client:load redirectTo={redirectTo ?? "/"}/>

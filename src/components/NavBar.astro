@@ -1,3 +1,9 @@
-<nav class="sticky font-poppins p-4 bg-white top-0 z-10">
+---
+import UserDropdown from "./UserDropdown";
+
+---
+
+<nav class="sticky font-poppins p-4 bg-white top-0 z-10 flex justify-between items-center">
     <h2 class="text-blue-900 font-bold text-xl">SeventhArt</h2>
+    <UserDropdown client:only />
 </nav>
