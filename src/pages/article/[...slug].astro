@@ -12,7 +12,7 @@ const markdown = data?.markdown_text
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <BaseHead title="SeventhArt" description="Blog" image={data?.article_image}/>
+    <BaseHead title="SeventhArt" description="Blog" image={data?.article_image} keywords={data?.article_title ?? "Article"} />
 </head>
 <body class="overflow-x-hidden">
     <HeroArticle image={data?.article_image} title={data?.article_title}/>
