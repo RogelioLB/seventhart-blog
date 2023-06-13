@@ -119,6 +119,24 @@ export interface Database {
           }
         ]
       }
+      level: {
+        Row: {
+          created_at: string | null
+          description: string
+          id: number
+        }
+        Insert: {
+          created_at?: string | null
+          description: string
+          id?: number
+        }
+        Update: {
+          created_at?: string | null
+          description?: string
+          id?: number
+        }
+        Relationships: []
+      }
       likes: {
         Row: {
           article_id: number
@@ -204,6 +222,40 @@ export interface Database {
           state?: string | null
         }
         Relationships: []
+      }
+      user_level: {
+        Row: {
+          created_at: string | null
+          id: number
+          level: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: number
+          level: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: number
+          level?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_level_level_fkey"
+            columns: ["level"]
+            referencedRelation: "level"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_level_user_id_fkey"
+            columns: ["user_id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
     }
     Views: {

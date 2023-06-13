@@ -1,0 +1,17 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import MainContainer from "../../layouts/MainContainer.astro";
+import Dashboard from "../../components/Dashboard"
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <BaseHead title="SeventhArt | Dashboard" description="Descubre reseñas y noticias sobre tus peliculas y series favoritas. ¡Entra ahora!"/>
+</head>
+<body class="overflow-x-hidden">
+    <MainContainer>
+        <Dashboard client:load />
+    </MainContainer>
+</body>
+</html>

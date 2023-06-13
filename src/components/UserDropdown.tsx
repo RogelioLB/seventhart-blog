@@ -3,7 +3,7 @@ import useUser from '../hooks/useUser';
 import { supabase } from '../database';
 
 export default function UserDropdown() {
-  const [user] = useUser()
+  const {user,role} = useUser()
   
   return (
     <Dropdown
@@ -22,13 +22,15 @@ export default function UserDropdown() {
           </Dropdown.Header>
         )
       }
-      {user && <Dropdown.Item>Dashboard</Dropdown.Item>}
+      <Dropdown.Item><a href="/" className='flex-1'>Inicio</a></Dropdown.Item>
       <Dropdown.Item>
         Curiosidades
       </Dropdown.Item>
+      <Dropdown.Divider />
+      {user && role==='ADMIN' && <Dropdown.Item><a className="flex-1" href='/dashboard'>Dashboard</a></Dropdown.Item>}
       <Dropdown.Item>
         {
-          user ? <button onClick={async()=>await supabase.auth.signOut()}>SingOut</button> : <a href={`/signin?redirect=${location.pathname}`}>Sign In</a>
+          user ? <button className='flex-1 text-start' onClick={async()=>await supabase.auth.signOut()}>SingOut</button> : <a className='flex-1' href={`/signin?redirect=${location.pathname}`}>Sign In</a>
         }
       </Dropdown.Item>
     </Dropdown>

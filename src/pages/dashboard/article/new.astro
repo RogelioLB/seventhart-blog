@@ -1,0 +1,20 @@
+---
+import BaseHead from "../../../components/BaseHead.astro";
+import ArticleForm from "../../../components/ArticleForm"
+import { supabase_admin } from "../../../database_admin";
+import Content from "../../../layouts/Content.astro";
+const categories = (await supabase_admin.from('category').select('id,category_name')).data
+const states = (await supabase_admin.from('state_publication').select('id,state')).data
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <BaseHead title="SeventhArt | New Article" description="Descubre reseñas y noticias sobre tus peliculas y series favoritas. ¡Entra ahora!"/>
+</head>
+<body class="overflow-x-hidden">
+    <Content>
+        <ArticleForm categories={categories} states={states}/>
+    </Content>
+</body>
+</html>
