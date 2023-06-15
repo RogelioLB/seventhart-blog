@@ -14,7 +14,7 @@ const states = (await supabase_admin.from('state_publication').select('id,state'
 </head>
 <body class="overflow-x-hidden">
     <Content>
-        <ArticleForm categories={categories} states={states}/>
+        <ArticleForm categories={categories} states={states} client:only/>
     </Content>
 </body>
 </html>

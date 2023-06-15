@@ -13,11 +13,8 @@ export default function UserDropdown() {
       {
         user && (
           <Dropdown.Header>
-            <span className="block text-sm">
+            <span className="block text-sm font-bold">
               {user.user_metadata.name}
-            </span>
-            <span className="block truncate text-sm font-medium">
-              {user.email}
             </span>
           </Dropdown.Header>
         )

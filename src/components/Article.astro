@@ -1,0 +1,19 @@
+---
+import type { IArticle } from '../types/articles';
+interface Props extends IArticle{
+    category:{
+        category_name:string
+    } | null
+}
+const {article_title,article_image,article_slug,category_id,category} = Astro.props;
+---
+
+<a href=`/article/${article_slug}`>
+    <article class="flex flex-col gap-1 shadow-md shadow-black/10 rounded overflow-hidden">
+        <img src={article_image} alt={article_title} />
+        <div class="px-2 py-2 sm:py-6 flex flex-col gap-4">
+            <h3 class="font-poppins text-xl font-bold [text-wrap:balance]">{article_title}</h3>
+            <div><span class="font-medium text-base text-blue-700">{category?.category_name}</span></div>
+        </div>
+    </article>
+</a>
