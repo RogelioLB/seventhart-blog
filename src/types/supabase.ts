@@ -11,7 +11,9 @@ export interface Database {
     Tables: {
       article: {
         Row: {
+          article_description: string | null
           article_image: string
+          article_keywords: string | null
           article_slug: string
           article_state: number | null
           article_title: string
@@ -22,7 +24,9 @@ export interface Database {
           user_id: string | null
         }
         Insert: {
+          article_description?: string | null
           article_image: string
+          article_keywords?: string | null
           article_slug: string
           article_state?: number | null
           article_title: string
@@ -33,7 +37,9 @@ export interface Database {
           user_id?: string | null
         }
         Update: {
+          article_description?: string | null
           article_image?: string
+          article_keywords?: string | null
           article_slug?: string
           article_state?: number | null
           article_title?: string
@@ -262,7 +268,12 @@ export interface Database {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      admin_only: {
+        Args: {
+          id_user: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never

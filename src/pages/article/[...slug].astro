@@ -17,7 +17,7 @@ const {user} = (await supabase_admin.auth.admin.getUserById(data?.user_id as str
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <BaseHead title="SeventhArt" description="Blog" image={data?.article_image} keywords={data?.article_title ?? "Article"} />
+    <BaseHead title={`${data?.article_title}`} description={data?.article_description ?? ""} image={data?.article_image} keywords={data?.article_keywords ?? ""} />
 </head>
 <body class="overflow-x-hidden">
     <Content>

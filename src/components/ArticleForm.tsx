@@ -44,7 +44,7 @@ export default function ArticleForm({
   const onSubmit = async (e:FormEvent) => {
     e.preventDefault()
     const url_image = await uploadImage()
-    const {error} = await supabase.from("article").insert({article_image:url_image,article_slug:slug as string,article_title:title as string,category_id:category as number,markdown_text:content,article_state:state as number,user_id:user?.id})
+    const {error} = await supabase.from("article").insert({article_image:url_image,article_slug:slug as string,article_title:title as string,category_id:category as number,markdown_text:htmlToMarkdown(content),article_state:state as number,user_id:user?.id})
     if(error) return alert('error')
     alert('upload')
   };
@@ -106,7 +106,7 @@ export default function ArticleForm({
         theme="snow"
         value={content}
         onChange={(val) => {
-          setContent(htmlToMarkdown(val));
+          setContent(val);
         }}
         className="h-72 [&>.ql-container]:overflow-y-auto mb-12"
       />
