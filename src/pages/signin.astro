@@ -1,6 +1,27 @@
 ---
+import BaseHead from '../components/BaseHead.astro';
 import GoogleLogin from '../components/GoogleLogin'
+import GoBack from '../components/GoBack'
 const searchParams = new URL(Astro.url).searchParams
 const redirectTo = searchParams.get("redirect")
 ---
-<GoogleLogin client:load redirectTo={redirectTo ?? "/"}/>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <BaseHead title="SeventhArt | Iniciar Sesión" description="Descubre reseñas y noticias sobre tus peliculas y series favoritas. ¡Entra ahora!" keywords="Septimo Arte, peliculas, series, cine, blog de cine y series, blog de cine, mejores peliculas del año, reseñas y analisis, reseñas de peliculas, criticas"/>
+</head>
+<body class="overflow-x-hidden relative h-screen bg-blue-950 py-12">
+    <div class="max-w-lg mx-auto bg-white rounded-md p-4 h-full shadow-sm shadow-white">
+        <div class="w-full flex">
+            <GoBack client:load/>
+        </div>
+        <div class="flex items-center flex-col gap-12">
+            <div class="flex gap-1 items-center flex-col">
+                <h1 class="text-blue-700 text-6xl font-bold">SeventhArt</h1>
+                <h3 class="text-gray-800 text-lg font-medium text-center">Inicia Sesión ¡ahora! y ten la posibilidad de comentar publicaciones y marcarlas como favoritos.</h3>
+            </div>
+            <GoogleLogin client:load redirectTo={redirectTo ?? "/"}/>
+        </div>
+    </div>
+</body>
+</html>
