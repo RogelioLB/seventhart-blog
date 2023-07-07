@@ -10,9 +10,9 @@ const {article_image,article_slug,article_title,created_at} = Astro.props
 <a href=`/article/${article_slug}`>
     <article class="flex flex-col sm:flex-row gap-2 shadow-md shadow-black/10 rounded overflow-hidden">
         <div class="basis-1/3">
-            <img src={article_image} class="w-full h-full"/>
+            <img src={article_image} class="w-full h-full object-cover"/>
         </div>
-        <div class="flex-1 flex px-2 py-2 sm:py-6 flex-col justify-between">
+        <div class="flex-1 flex px-2 py-2 sm:py-6 flex-col justify-between gap-2">
             <h2 class="font-poppins text-3xl font-bold [text-wrap:balance]">{article_title}</h2>
             <span class="flex gap-2 items-center"><MdDateRange /> {new Date(created_at as string).toLocaleDateString()}</span>
         </div>

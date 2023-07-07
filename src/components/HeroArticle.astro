@@ -1,7 +1,8 @@
 ---
 import type { User } from '@supabase/supabase-js';
 import { Avatar } from 'flowbite-react';
-import {BiHeart,BiComment} from "react-icons/bi/index"
+import {BiHeart} from "react-icons/bi/index"
+import ButtonComments from './ButtonComments';
 
 interface Props{
     image?:string,
@@ -38,9 +39,7 @@ const {image,category,created_at,slug,title,reading_time,created_by} = Astro.pro
         <div>
             <BiHeart />
         </div>
-        <div>
-            <BiComment />
-        </div>
+        <ButtonComments client:load />
     </div>
     <img src={image} alt={slug} class="rounded-b-sm w-full h-full object-cover"/>
 </div>
