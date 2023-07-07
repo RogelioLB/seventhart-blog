@@ -21,7 +21,7 @@ const Comments = ({comments, onClose, show} : {onClose:()=>void, show:boolean}) 
 }
 
 export default function ButtonComments(){
-    const [show,setShow] = useState(true);
+    const [show,setShow] = useState(false);
 
     const handleOpen = () =>{
         setShow(true)
