@@ -3,6 +3,7 @@ import type { User } from '@supabase/supabase-js';
 import { Avatar } from 'flowbite-react';
 import { BiHeart, BiShare } from "react-icons/bi/index"
 import ButtonComments from './ButtonComments';
+import ButtonShare from './ButtonShare';
 
 interface Props{
     image?:string,
@@ -42,9 +43,7 @@ const {image,category,created_at,slug,title,reading_time,created_by} = Astro.pro
             </button>
             <ButtonComments client:load />
         </div>
-        <div>
-            <BiShare />
-        </div>
+        <ButtonShare client:load />
     </div>
     <img src={image} alt={slug} class="rounded-b-sm w-full h-full object-cover"/>
 </div>
