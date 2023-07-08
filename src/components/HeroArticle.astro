@@ -1,7 +1,7 @@
 ---
 import type { User } from '@supabase/supabase-js';
 import { Avatar } from 'flowbite-react';
-import {BiHeart} from "react-icons/bi/index"
+import { BiHeart, BiShare } from "react-icons/bi/index"
 import ButtonComments from './ButtonComments';
 
 interface Props{
@@ -36,10 +36,15 @@ const {image,category,created_at,slug,title,reading_time,created_by} = Astro.pro
         </div>
     </div>
     <div class="border-t border-zinc-400 border-b p-4 text-xl flex gap-2 mb-12">
-        <div>
-            <BiHeart />
+        <div class="sm:relative sm:w-auto sm:text-inherit sm:text-black sm:py-0 sm:shadow-none sm:bg-transparent sm:gap-2 fixed z-10 bottom-0 left-0 w-full bg-white rounded-t-3xl shadow-[0_0_15px_rgba(0,0,0,.2)] flex [&>button]:flex-1 text-2xl py-6 text-gray-500">
+            <button class="flex items-center justify-center">
+                <BiHeart />
+            </button>
+            <ButtonComments client:load />
         </div>
-        <ButtonComments client:load />
+        <div>
+            <BiShare />
+        </div>
     </div>
     <img src={image} alt={slug} class="rounded-b-sm w-full h-full object-cover"/>
 </div>
