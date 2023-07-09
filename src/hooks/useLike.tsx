@@ -8,7 +8,7 @@ const likesExist = async (user_id:string,article_id:number) =>{
 
 export default function useLike(user_id:string,article_id:number){
     const [liked,setLiked] = useState<boolean>()
-    const [loading,setLoading] = useState<boolean>()
+    const [loading,setLoading] = useState<boolean>(false)
 
     useEffect(()=>{
         likesExist(user_id,article_id).then(like_data=>{
