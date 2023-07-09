@@ -3,7 +3,7 @@ import { BiComment, BiPlus } from "react-icons/bi/index";
 
 const Comments = ({comments, onClose, show} : {onClose:()=>void, show:boolean}) => {
     return(
-        <div className={`${show ? "pointer-events-auto bg-black/30" : "bg-transparent pointer-events-none"} w-full fixed h-screen top-0 left-0 z-20 transition-colors`} onClick={e=>onClose()}>
+        <div className={`${show ? "pointer-events-auto bg-black/30" : "bg-transparent pointer-events-none"} w-full fixed h-screen top-0 left-0 z-20 transition-colors duration-700`} onClick={e=>onClose()}>
             <div onClick={e=>e.stopPropagation()} className={`text-black w-full sm:w-80 fixed top-0 right-0 bg-slate-50 h-screen z-30 p-4 ${show ? "translate-y-0 sm:translate-x-0" : "translate-y-full sm:translate-x-full"} transition-transform`}>
                 <div className="flex justify-between items-center mb-8">
                     <h3 className="">Comentarios (0):</h3>

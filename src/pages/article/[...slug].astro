@@ -21,7 +21,7 @@ const {user} = (await supabase_admin.auth.admin.getUserById(data?.user_id as str
 </head>
 <body class="overflow-x-hidden">
     <Content>
-        <HeroArticle created_at={data?.created_at} image={data?.article_image} title={data?.article_title} reading_time={readingTime} created_by={user}/>
+        <HeroArticle article_id={data?.id} created_at={data?.created_at} image={data?.article_image} title={data?.article_title} reading_time={readingTime} created_by={user}/>
         <div class="max-sm:mb-20 flex gap-4 flex-col mt-4 [&>p:nth-child(1)]:first-letter:mr-3  [&>p:nth-child(1)]:first-letter:float-left [&>p:nth-child(1)]:first-letter:text-5xl [&>p:nth-child(1)]:first-letter:font-bold">
             <Markdown content={markdown} components={{Heading}} />
         </div>
