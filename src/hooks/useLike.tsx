@@ -15,7 +15,7 @@ export default function useLike(user_id:string,article_id:number){
             if(like_data) setLiked(true)
             else setLiked(false)
         })
-    },[])
+    },[user_id])
 
     const handleLike = async () => {
         setLoading(true)
