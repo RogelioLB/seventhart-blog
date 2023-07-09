@@ -6,12 +6,13 @@ const likesExist = async (user_id:string,article_id:number) =>{
     return like_data
 }
 
-export default function useLike(user_id:string,article_id:number){
+export default function useLike(article_id:number,user_id?:string){
     const [liked,setLiked] = useState<boolean>()
     const [loading,setLoading] = useState<boolean>(false)
 
     useEffect(()=>{
-        likesExist(user_id,article_id).then(like_data=>{
+        likesExist(user_id as string,article_id).then(like_data=>{
+            console.log(like_data)
             if(like_data) setLiked(true)
             else setLiked(false)
         })
@@ -19,7 +20,7 @@ export default function useLike(user_id:string,article_id:number){
 
     const handleLike = async () => {
         setLoading(true)
-        const like_data = await likesExist(user_id,article_id)
+        const like_data = await likesExist(user_id as string,article_id)
         if(like_data) {
             await supabase.from("likes").delete({count:"exact"}).eq("id",like_data.id)
             setLiked(false)

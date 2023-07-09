@@ -4,7 +4,7 @@ import useLike from "../hooks/useLike";
 
 export default function ButtonHearth({article_id}:{article_id?:number}){
     const {user} = useUser()
-    const {liked,handleLike,loading} = useLike(user?.id as string,article_id as number)
+    const {liked,handleLike,loading} = useLike(article_id as number,user?.id as string)
 
     return(
         <button disabled={loading} className={`transition-colors flex-1 flex items-center justify-center ${liked ? 'text-blue-500' : 'text-inherit'}`} onClick={handleLike}>
